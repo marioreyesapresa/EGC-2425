@@ -25,11 +25,15 @@ jobs:
 
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
+        python-version: '3.11'
 
     - name: Prepare environment
       run: |
         sed -i '/rosemary @ file:\/\/\/app/d' requirements.txt
+
+    - name: Check for outdated dependencies
+      run: |
+        pip list --outdated
 
     - name: Install dependencies
       run: |
